@@ -1,38 +1,27 @@
-# Soverai — Lancer (The Old Guild / Nômade) Isometric Sprites
+# Soverai — Lancer (The Old Guild / Nômade) 8-Frame Isometric Sprites
 
-Hi-bit isometric pixel art character sprites and animation sheets (**Idle**, **Walk**, and **Running Cycle** across `SE`, `SW`, `NW`, and `NE`) for the Male and Female **Lancers** (*A Velha Guilda*), designed without weapons for modular equipment and *Archeotek* / *Vharenn* effect layering.
+Hi-bit isometric pixel art character sprites and **8-frame animation sheets** (**Breathing Idle**, **Pose-Guided Walk**, and **Pose-Guided Run** across `SE`, `SW`, `NW`, and `NE`) for the Male and Female **Lancers** (*A Velha Guilda*), designed without weapons for modular equipment and *Archeotek* / *Vharenn* effect layering.
 
 ## Interactive Browser Previewer
 
-- **Local / Offline:** Open [`lancer_isometric_previewer.html`](./lancer_isometric_previewer.html) (or [`index.html`](./index.html)) directly in any browser — all 4 transparent 3-row sprite sheets are embedded inside the HTML file.
-- **GitHub Pages:** `https://caio-bress.github.io/soverai-lancer-sprites/`
+- **GitHub Pages (Live):** https://caio-bress.github.io/soverai-lancer-sprites/
+- **Local / Offline:** Open [`index.html`](./index.html) or [`lancer_isometric_previewer.html`](./lancer_isometric_previewer.html) directly in any desktop browser — all 4 transparent 3×8 sprite sheets are embedded inside the HTML file.
 
 ---
 
-## Isometric Character Showcase
+## 3×8 Master Transparent Sprite Sheets (`1536×912` — `192×304` per cell)
 
-![Lancers Isometric Showcase](./sprites/lancers_isometric_showcase.png)
+- **Row 0 (8 frames — Breathing Idle):** Smooth sinusoidal ribcage expansion & rise with feet locked to the isometric tile, 1-frame secondary head/sash follow-through, and pulsing cyan/blue *Archeotek* glow.
+- **Row 1 (8 frames — Walk Cycle):** Complete alternating 2-step gait (`L-Contact → L-Down → L-Passing → L-Up → R-Contact → R-Down → R-Passing → R-Up`).
+- **Row 2 (8 frames — Running Cycle):** Dynamic forward-leaning sprint with deep cushion squats (`F2`, `F6`), dual airborne flight bounds (`F4`, `F8`), and streaming sashes.
 
----
+| Master Sheet | Direction | Preview |
+| :--- | :--- | :--- |
+| [`sprites/male_lancer_isometric_se_full_sheet.png`](./sprites/male_lancer_isometric_se_full_sheet.png) | `SE` (flip for `SW`) | Male Lancer front-diagonal 3×8 |
+| [`sprites/male_lancer_isometric_nw_full_sheet.png`](./sprites/male_lancer_isometric_nw_full_sheet.png) | `NW` (flip for `NE`) | Male Lancer rear-diagonal 3×8 |
+| [`sprites/female_lancer_isometric_se_full_sheet.png`](./sprites/female_lancer_isometric_se_full_sheet.png) | `SE` (flip for `SW`) | Female Lancer front-diagonal 3×8 |
+| [`sprites/female_lancer_isometric_nw_full_sheet.png`](./sprites/female_lancer_isometric_nw_full_sheet.png) | `NW` (flip for `NE`) | Female Lancer rear-diagonal 3×8 |
 
-## Transparent Isometric Sprite Sheets (`sprites/`)
-
-### 1. 3-Row Master Sheets (`1344×1080` — Row 0: `Idle`, Row 1: `Walk`, Row 2: `Run`)
-- [`sprites/male_lancer_isometric_se_full_sheet.png`](./sprites/male_lancer_isometric_se_full_sheet.png) — Male Lancer (`SE` / flip for `SW`)
-- [`sprites/male_lancer_isometric_nw_full_sheet.png`](./sprites/male_lancer_isometric_nw_full_sheet.png) — Male Lancer (`NW` / flip for `NE`)
-- [`sprites/female_lancer_isometric_se_full_sheet.png`](./sprites/female_lancer_isometric_se_full_sheet.png) — Female Lancer (`SE` / flip for `SW`)
-- [`sprites/female_lancer_isometric_nw_full_sheet.png`](./sprites/female_lancer_isometric_nw_full_sheet.png) — Female Lancer (`NW` / flip for `NE`)
-
-### 2. Running Cycle Sheets (`1344×720` — Row 0: `SE Run`, Row 1: `NW Run`)
-- [`sprites/male_lancer_isometric_run_sheet.png`](./sprites/male_lancer_isometric_run_sheet.png)
-- [`sprites/female_lancer_isometric_run_sheet.png`](./sprites/female_lancer_isometric_run_sheet.png)
-
-### 3. Idle + Walk Sheets (`1344×720` — Row 0: `Idle`, Row 1: `Walk`)
-- [`sprites/male_lancer_isometric_se_sheet.png`](./sprites/male_lancer_isometric_se_sheet.png)
-- [`sprites/male_lancer_isometric_nw_sheet.png`](./sprites/male_lancer_isometric_nw_sheet.png)
-- [`sprites/female_lancer_isometric_se_sheet.png`](./sprites/female_lancer_isometric_se_sheet.png)
-- [`sprites/female_lancer_isometric_nw_sheet.png`](./sprites/female_lancer_isometric_nw_sheet.png)
-
-### 4. Individual Sliced & Stabilized Frames (`224×360` RGBA `.png`)
-- `sprites/male_lancer/se/` & `sprites/male_lancer/nw/` (`idle_0..5.png`, `walk_0..5.png`, `run_0..5.png`)
-- `sprites/female_lancer/se/` & `sprites/female_lancer/nw/` (`idle_0..5.png`, `walk_0..5.png`, `run_0..5.png`)
+### Individual Sliced & Stabilized Frames (`24` frames per direction × `4` = `96` PNGs)
+- `sprites/male_lancer/se/` & `sprites/male_lancer/nw/` (`idle_0..7.png`, `walk_0..7.png`, `run_0..7.png`)
+- `sprites/female_lancer/se/` & `sprites/female_lancer/nw/` (`idle_0..7.png`, `walk_0..7.png`, `run_0..7.png`)

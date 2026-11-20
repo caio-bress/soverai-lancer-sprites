@@ -389,12 +389,18 @@ def build_character_direction(
 def main() -> None:
     ORIG_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Extract clean single-frame idle bases
-    male_se_idle_base = Image.open(SPRITES_DIR / "male_lancer_isometric_se_sheet.png").crop((0, 0, 224, 360))
-    male_nw_idle_base = Image.open(SPRITES_DIR / "male_lancer_isometric_nw_sheet.png").crop((0, 0, 224, 360))
+    # Extract clean single-frame lowered-arm idle bases for Male Lancer (SE left half, NW right half)
+    male_idle_pair_path = BRAIN_DIR / "male_lancer_idle_arms_lowered_1795194835581.jpg"
+    male_idle_raw = Image.open(male_idle_pair_path).convert("RGB")
+    male_idle_raw.save(ORIG_DIR / male_idle_pair_path.name, quality=96)
+    male_idle_rgba = remove_background_rgba(male_idle_raw, tol=11.0, mask_watermark=True)
+    mid_x = male_idle_rgba.width // 2
+    male_se_idle_base = male_idle_rgba.crop((0, 0, mid_x, male_idle_rgba.height))
+    male_nw_idle_base = male_idle_rgba.crop((mid_x, 0, male_idle_rgba.width, male_idle_rgba.height))
+
     fem_se_idle_base = Image.open(SPRITES_DIR / "female_lancer_isometric_se_sheet.png").crop((0, 0, 224, 360))
 
-    # For Female NW idle base: use clean native Frame 6 (upright staggered back stance) from the new 8f NW sheet!
+    # For Female NW idle base: use clean native Frame 6 (upright staggered back stance) from the 8f NW sheet
     fem_nw_raw = Image.open(BRAIN_DIR / "female_lancer_iso_nw_8f_walk_run_1795185455551.jpg").convert("RGB")
     fem_nw_rgba = remove_background_rgba(fem_nw_raw, tol=11.0, mask_watermark=True)
     cw = fem_nw_rgba.width / 8.0

@@ -1,11 +1,30 @@
 # Soverai — Lancer (The Old Guild / Nômade) 8-Frame Isometric Sprites
 
-Hi-bit isometric pixel art character sprites and **8-frame animation sheets** (**Breathing Idle**, **Pose-Guided Walk**, and **Pose-Guided Run** across `SE`, `SW`, `NW`, and `NE`) for the Male and Female **Lancers** (*A Velha Guilda*), designed without weapons for modular equipment and *Archeotek* / *Vharenn* effect layering.
+Hi-bit isometric pixel art character sprites, **animated GIFs**, and **8-frame sprite sheets** (**Breathing Idle**, **Pose-Guided Walk**, and **Pose-Guided Run** across `SE`, `SW`, `NW`, and `NE`) for the Male and Female **Lancers** (*A Velha Guilda*), designed without weapons for modular equipment and *Archeotek* / *Vharenn* effect layering.
 
 ## Interactive Browser Previewer
 
 - **GitHub Pages (Live):** https://caio-bress.github.io/soverai-lancer-sprites/
 - **Local / Offline:** Open [`index.html`](./index.html) or [`lancer_isometric_previewer.html`](./lancer_isometric_previewer.html) directly in any desktop browser — all 4 transparent 3×8 sprite sheets are embedded inside the HTML file.
+
+---
+
+## Animated GIF Showcases (`gifs/`)
+
+![Lancers Duo Showcase](./gifs/lancers_isometric_duo_showcase.gif)
+
+| Male Lancer (`SE` & `NW`) | Female Lancer (`SE` & `NW`) |
+| :---: | :---: |
+| ![Male SE Showcase](./gifs/male_lancer_se_showcase.gif) | ![Female SE Showcase](./gifs/female_lancer_se_showcase.gif) |
+| ![Male NW Showcase](./gifs/male_lancer_nw_showcase.gif) | ![Female NW Showcase](./gifs/female_lancer_nw_showcase.gif) |
+
+### Individual Transparent Looping GIFs (`gifs/`)
+| Character & Direction | Idle (Breathing) | Walk (8f) | Run (8f) |
+| :--- | :--- | :--- | :--- |
+| **Male Lancer — `SE`** | [`male_lancer_se_idle.gif`](./gifs/male_lancer_se_idle.gif) | [`male_lancer_se_walk.gif`](./gifs/male_lancer_se_walk.gif) | [`male_lancer_se_run.gif`](./gifs/male_lancer_se_run.gif) |
+| **Male Lancer — `NW`** | [`male_lancer_nw_idle.gif`](./gifs/male_lancer_nw_idle.gif) | [`male_lancer_nw_walk.gif`](./gifs/male_lancer_nw_walk.gif) | [`male_lancer_nw_run.gif`](./gifs/male_lancer_nw_run.gif) |
+| **Female Lancer — `SE`** | [`female_lancer_se_idle.gif`](./gifs/female_lancer_se_idle.gif) | [`female_lancer_se_walk.gif`](./gifs/female_lancer_se_walk.gif) | [`female_lancer_se_run.gif`](./gifs/female_lancer_se_run.gif) |
+| **Female Lancer — `NW`** | [`female_lancer_nw_idle.gif`](./gifs/female_lancer_nw_idle.gif) | [`female_lancer_nw_walk.gif`](./gifs/female_lancer_nw_walk.gif) | [`female_lancer_nw_run.gif`](./gifs/female_lancer_nw_run.gif) |
 
 ---
 
@@ -15,13 +34,9 @@ Hi-bit isometric pixel art character sprites and **8-frame animation sheets** (*
 - **Row 1 (8 frames — Walk Cycle):** Complete alternating 2-step gait (`L-Contact → L-Down → L-Passing → L-Up → R-Contact → R-Down → R-Passing → R-Up`).
 - **Row 2 (8 frames — Running Cycle):** Dynamic forward-leaning sprint with deep cushion squats (`F2`, `F6`), dual airborne flight bounds (`F4`, `F8`), and streaming sashes.
 
-| Master Sheet | Direction | Preview |
+| Master Sheet | Direction | Description |
 | :--- | :--- | :--- |
 | [`sprites/male_lancer_isometric_se_full_sheet.png`](./sprites/male_lancer_isometric_se_full_sheet.png) | `SE` (flip for `SW`) | Male Lancer front-diagonal 3×8 |
 | [`sprites/male_lancer_isometric_nw_full_sheet.png`](./sprites/male_lancer_isometric_nw_full_sheet.png) | `NW` (flip for `NE`) | Male Lancer rear-diagonal 3×8 |
 | [`sprites/female_lancer_isometric_se_full_sheet.png`](./sprites/female_lancer_isometric_se_full_sheet.png) | `SE` (flip for `SW`) | Female Lancer front-diagonal 3×8 |
 | [`sprites/female_lancer_isometric_nw_full_sheet.png`](./sprites/female_lancer_isometric_nw_full_sheet.png) | `NW` (flip for `NE`) | Female Lancer rear-diagonal 3×8 |
-
-### Individual Sliced & Stabilized Frames (`24` frames per direction × `4` = `96` PNGs)
-- `sprites/male_lancer/se/` & `sprites/male_lancer/nw/` (`idle_0..7.png`, `walk_0..7.png`, `run_0..7.png`)
-- `sprites/female_lancer/se/` & `sprites/female_lancer/nw/` (`idle_0..7.png`, `walk_0..7.png`, `run_0..7.png`)

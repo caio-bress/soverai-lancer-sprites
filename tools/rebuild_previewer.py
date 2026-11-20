@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Embeds the 4 master 3x8 transparent PNG sprite sheets into both the inline chat
-artifact previewer and the standalone desktop/GitHub Pages HTML previewer.
+Embeds the 4 master 5x8 transparent PNG sprite sheets (Idle, Walk, Run, Sword, Bow)
+into both the inline chat artifact previewer and the standalone desktop/GitHub Pages HTML previewer.
 """
 
 from __future__ import annotations
@@ -23,18 +23,50 @@ REPO_HTML = REPO / "lancer_isometric_previewer.html"
 REPO_INDEX = REPO / "index.html"
 
 MAPPING = {
-    "male_se": "male_lancer_isometric_se_full_sheet.png",
-    "male_nw": "male_lancer_isometric_nw_full_sheet.png",
-    "female_se": "female_lancer_isometric_se_full_sheet.png",
-    "female_nw": "female_lancer_isometric_nw_full_sheet.png",
+    "male_se": "male_lancer_isometric_se_5row_master.png",
+    "male_nw": "male_lancer_isometric_nw_5row_master.png",
+    "female_se": "female_lancer_isometric_se_5row_master.png",
+    "female_nw": "female_lancer_isometric_nw_5row_master.png",
 }
+
+STANDALONE_STYLE = """  <title>Lancer (Old Guild) — 5×8 Isometric Sprite &amp; Combat Previewer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --background: #0f1117;
+      --content: #161922;
+      --card: #1c202b;
+      --card-border: #2e3446;
+      --border: #384057;
+      --foreground: #e2e8f0;
+      --muted-foreground: #94a3b8;
+      --primary: #38bdf8;
+      --primary-foreground: #0f172a;
+    }
+    body {
+      background-color: var(--background) !important;
+      color: var(--foreground) !important;
+      font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+      padding: 1.25rem !important;
+      max-width: 1120px;
+      margin: 0 auto !important;
+    }
+    #isoCanvas {
+      height: 520px !important;
+    }
+    canvas {
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+  </style>"""
 
 
 def main() -> None:
     data: dict[str, str] = {}
     for k, fname in MAPPING.items():
         im = Image.open(SPRITES_DIR / fname)
-        small = im.resize((768, 456), Image.Resampling.NEAREST).quantize(
+        # 1024x850 (128x170 per frame, 5 rows x 8 cols) quantized to 64 RGBA colors
+        small = im.resize((1024, 850), Image.Resampling.NEAREST).quantize(
             colors=64, method=Image.Quantize.FASTOCTREE
         )
         buf = io.BytesIO()
@@ -43,15 +75,29 @@ def main() -> None:
         print(f"Encoded {k}: {len(buf.getvalue())} bytes")
 
     js_assign = "window.SPRITE_SHEETS = " + json.dumps(data) + ";"
-    pattern = re.compile(r"window\.SPRITE_SHEETS\s*=\s*\{.*?\};", re.DOTALL)
+    html = ARTIFACT_HTML.read_text(encoding="utf-8")
+    if "/*__SPRITE_DATA_PLACEHOLDER__*/" in html:
+        html_embedded = html.replace("/*__SPRITE_DATA_PLACEHOLDER__*/", js_assign, 1)
+    else:
+        pattern = re.compile(r"window\.SPRITE_SHEETS\s*=\s*\{.*?\};", re.DOTALL)
+        html_embedded = pattern.sub(lambda _: js_assign, html, count=1)
 
-    for target in [ARTIFACT_HTML, REPO_HTML, REPO_INDEX]:
-        if target.exists():
-            html = target.read_text(encoding="utf-8")
-            assert pattern.search(html), f"Missing SPRITE_SHEETS in {target}"
-            updated = pattern.sub(lambda _: js_assign, html, count=1)
-            target.write_text(updated, encoding="utf-8")
-            print(f"Updated {target}")
+    ARTIFACT_HTML.write_text(html_embedded, encoding="utf-8")
+    print(f"Updated {ARTIFACT_HTML}")
+
+    html_standalone = html_embedded.replace(
+        """  <style>
+    canvas {
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+  </style>""",
+        STANDALONE_STYLE,
+    ).replace('style="height: 315px;"', 'style="height: 520px;"')
+
+    for target in [REPO_HTML, REPO_INDEX]:
+        target.write_text(html_standalone, encoding="utf-8")
+        print(f"Updated {target}")
 
 
 if __name__ == "__main__":

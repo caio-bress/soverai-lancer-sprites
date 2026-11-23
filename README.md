@@ -51,3 +51,18 @@ Hi-bit isometric pixel art character sprites, **animated GIFs**, and **5×8 mast
 | [`male_lancer_isometric_nw_5row_master.png`](./sprites/male_lancer_isometric_nw_5row_master.png) | [`male_lancer_isometric_nw_8f_sword_bow.png`](./sprites/male_lancer_isometric_nw_8f_sword_bow.png) | `NW` (flip for `NE`) |
 | [`female_lancer_isometric_se_5row_master.png`](./sprites/female_lancer_isometric_se_5row_master.png) | [`female_lancer_isometric_se_8f_sword_bow.png`](./sprites/female_lancer_isometric_se_8f_sword_bow.png) | `SE` (flip for `SW`) |
 | [`female_lancer_isometric_nw_5row_master.png`](./sprites/female_lancer_isometric_nw_5row_master.png) | [`female_lancer_isometric_nw_8f_sword_bow.png`](./sprites/female_lancer_isometric_nw_8f_sword_bow.png) | `NW` (flip for `NE`) |
+---
+
+## Weapon-Ready Standing Idles (Sword & Bow — `SE` & `NW`)
+
+In addition to the unarmed breathing idle, both Lancers now include dedicated 8-frame standing **Weapon-Ready Idles** (lowered sword poise & relaxed recurve bow with glowing cyan string):
+
+| Male Lancer Idles | Female Lancer Idles |
+| :---: | :---: |
+| ![Male Lancer Idles](gifs/male_lancer_idles_showcase.gif) | ![Female Lancer Idles](gifs/female_lancer_idles_showcase.gif) |
+
+- **Separate 2×8 Sheets (`2048×680`, `SE` top / `NW` bottom):**
+  - [`sprites/male_lancer_idle_sword_sheet.png`](sprites/male_lancer_idle_sword_sheet.png) · [`sprites/male_lancer_idle_bow_sheet.png`](sprites/male_lancer_idle_bow_sheet.png)
+  - [`sprites/female_lancer_idle_sword_sheet.png`](sprites/female_lancer_idle_sword_sheet.png) · [`sprites/female_lancer_idle_bow_sheet.png`](sprites/female_lancer_idle_bow_sheet.png)
+- **Transparent GIFs & 1×8 Strips:** `gifs/{male|female}_lancer_{se|nw}_idle_{sword|bow}.gif` & `sprites/{male|female}_lancer_{se|nw}_idle_{sword|bow}_strip.png`
+- **Individual Frames:** `sprites/{male|female}_lancer/{se|nw}/idle_{sword|bow}_{0..7}.png`

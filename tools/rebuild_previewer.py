@@ -23,13 +23,13 @@ REPO_HTML = REPO / "lancer_isometric_previewer.html"
 REPO_INDEX = REPO / "index.html"
 
 MAPPING = {
-    "male_se": "male_lancer_isometric_se_5row_master.png",
-    "male_nw": "male_lancer_isometric_nw_5row_master.png",
-    "female_se": "female_lancer_isometric_se_5row_master.png",
-    "female_nw": "female_lancer_isometric_nw_5row_master.png",
+    "male_se": ("male_lancer_isometric_se_5row_master.png", "male_lancer_se_idle_sword_strip.png", "male_lancer_se_idle_bow_strip.png"),
+    "male_nw": ("male_lancer_isometric_nw_5row_master.png", "male_lancer_nw_idle_sword_strip.png", "male_lancer_nw_idle_bow_strip.png"),
+    "female_se": ("female_lancer_isometric_se_5row_master.png", "female_lancer_se_idle_sword_strip.png", "female_lancer_se_idle_bow_strip.png"),
+    "female_nw": ("female_lancer_isometric_nw_5row_master.png", "female_lancer_nw_idle_sword_strip.png", "female_lancer_nw_idle_bow_strip.png"),
 }
 
-STANDALONE_STYLE = """  <title>Lancer (Old Guild) — 5×8 Isometric Sprite &amp; Combat Previewer</title>
+STANDALONE_STYLE = """  <title>Lancer (Old Guild) — Isometric Sprite, Weapon Idles &amp; Combat Previewer</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root {
@@ -63,10 +63,16 @@ STANDALONE_STYLE = """  <title>Lancer (Old Guild) — 5×8 Isometric Sprite &amp
 
 def main() -> None:
     data: dict[str, str] = {}
-    for k, fname in MAPPING.items():
-        im = Image.open(SPRITES_DIR / fname)
-        # 1024x850 (128x170 per frame, 5 rows x 8 cols) quantized to 64 RGBA colors
-        small = im.resize((1024, 850), Image.Resampling.NEAREST).quantize(
+    for k, (master_f, sw_idle_f, bw_idle_f) in MAPPING.items():
+        m_im = Image.open(SPRITES_DIR / master_f).convert("RGBA")
+        sw_im = Image.open(SPRITES_DIR / sw_idle_f).convert("RGBA")
+        bw_im = Image.open(SPRITES_DIR / bw_idle_f).convert("RGBA")
+        full = Image.new("RGBA", (2048, 340 * 7), (0, 0, 0, 0))
+        full.paste(m_im, (0, 0))
+        full.paste(sw_im, (0, 340 * 5))
+        full.paste(bw_im, (0, 340 * 6))
+        # 1024x1190 (128x170 per frame, 7 rows x 8 cols) quantized to 64 RGBA colors
+        small = full.resize((1024, 170 * 7), Image.Resampling.NEAREST).quantize(
             colors=64, method=Image.Quantize.FASTOCTREE
         )
         buf = io.BytesIO()
